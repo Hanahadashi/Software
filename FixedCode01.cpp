@@ -37,6 +37,7 @@ private:
 
 public:
     Quadrado(float s):lado(s) {}
+
     float getLado() const{
         return lado;
     }

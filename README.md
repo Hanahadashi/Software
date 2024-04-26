@@ -30,3 +30,4 @@ Princípio da Substituição de Liskov (LSP):
 
 Princípio da Segregação de Interfaces (ISP):
     Não há interfaces grandes e complexas sendo implementadas por nenhuma classe. Cada classe tem apenas os métodos necessários para cumprir sua responsabilidade específica.
+ 
