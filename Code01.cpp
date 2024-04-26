@@ -4,7 +4,7 @@ using namespace std;
 
 class Retangulo {
 public:
-    int largura, altura;
+    int largura,altura;
 
     void setLargura(int w) {
         largura = w;
