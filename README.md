@@ -1,31 +1,32 @@
 A função do código é calcular e imprimir a área de diversas formas geometricas.
 
-Os
- principios feridos no código foram:
+Os principios feridos no código foram:
 
-1- Responsabilidade única
-	A função "imprimirArea" além de imprimir a área, ela seleciona qual tipo de figura que vai ser imprimida.
+Princípio da Responsabilidade Única (SRP):
+    A classe Retangulo e a classe Quadrado possuem as funções de armazenarem os dados para calcular suas respectivas áreas, além de calcular as áreas, violando assim o SRP, pois elas possuem mais de uma função.
 
-2- Princípio aberto-fechado
-	Se novos tipos de figuras forem adicionados, a função "imprimirArea" precisaria ser modificada para lidar com os novos casos.
+Princípio do Aberto/Fechado (OCP):
+    Para adicionar um novo tipo de forma, seria necessário modificar a função "printArea()", violando assim  o OCP, que afirma que as classes devem ser abertas para extensão, mas fechadas para modificação.
 
-3- Princípio da substituição de Liskov
-	Não existe herança explícita neste código, mas o tipo "Figura" é usado para representar diferentes tipos de figuras e a substituição da "Figura" por uma subclasse não é transparente, pois é necessário fazer uma conversão de tipo.
+Princípio da Substituição de Liskov (LSP):
+    A classe "Quadrado" herda da classe "Retangulo", mas substitui o comportamento dos métodos "setLargura()" e "setAltura()", o que viola o princípio de substituição de Liskov. O contrato de comportamento estabelecido pela classe base (Retangulo) não é mantido pela classe derivada (Quadrado).
 
-4- Princípio da Segregação da Interface 
-	Não há interfaces explícitas neste código, mas a função "imprimirArea" está dependendo do tipo específico Figura, o que pode levar a problemas se mais métodos relacionados a figuras forem adicionados no futuro.
+Princípio da Inversão de Dependência (DIP):
+    Não é uma violação direta neste código, mas em uma implementação mais ampla, a dependência direta da função printArea() com a classe Retangulo e Quadrado pode ser considerada uma violação do DIP. Idealmente, a função "printArea()" deve depender de uma abstração em vez de classes concretas.
 
 
 Porque o novo código respeita os princípios
 
-1- Responsabilidade única
-    Agora a função "imprimirArea" apenas imprime o resultado calculado.
+Princípio da Responsabilidade Única (SRP):
+    As classes ""Circulo"" e "Quadrado" tem apenas uma responsabilidade, que é armazenar e fornecer informações sobre um círculo e sobre um quadrado respectivamente. Enquanto as
+    classes ""Circulo"AreaCalculator" e "QuadradoAreaCalculator" têm apenas a responsabilidade de calcular as áreas
+    A classe "Printer" também tem uma única responsabilidade, que é imprimir a área de uma forma.
 
-2- Princípio aberto-fechado
-    Caso novas formas geometricas sejam adicionadas, a função "imprimirArea" não é mais prejudicada, sendo necessário apenas criar uma struct com os valores necessários para calcular a área e a função que calcula a mesma.
+Princípio Aberto/Fechado (OCP):
+    As classes "Circulo", Quadrado, "CirculoAreaCalculator", "QuadradoAreaCalculator" e "Printer" estão abertas para extensão, mas fechadas para modificação.
 
-3- Princípio da substituição de Liskov
-    As subclasses criadas podem ser usadas em qualquer lugar que a base "FormaGeometrica" é esperada sem afetar o comportamento do programa.
+Princípio da Substituição de Liskov (LSP):
+    As subclasses "Circulo" e "Quadrado" substituem sua classe base Forma sem afetar o comportamento do programa. Ou seja, onde quer que uma Forma seja usada, uma "Circulo" ou "Quadrado" pode ser usada no lugar sem problemas.
 
-4- Princípio da segregação de interfaces
-    As structs "Retangulo" e "Circulo" implementam apenas os métodos que são relevantes para elas, nenhuma classe é forçada a implementar métodos que não usa.
+Princípio da Segregação de Interfaces (ISP):
+    Não há interfaces grandes e complexas sendo implementadas por nenhuma classe. Cada classe tem apenas os métodos necessários para cumprir sua responsabilidade específica.
